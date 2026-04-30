@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ✅ Instant meta-refresh redirect (fallback if JS is blocked) -->
+    <meta http-equiv="refresh" content="0; url=https://play.google.com/store/apps/details?id=com.akash.prop8">
+
+    <title>Zorario - Redirecting...</title>
+
+    <!-- ✅ SEO / Social (kept so link previews still show nicely) -->
+    <meta name="description" content="Zorario is a premium real estate platform to buy, sell and rent properties across India.">
+    <meta property="og:title" content="Zorario - Buy, Sell & Rent Properties in India">
+    <meta property="og:description" content="Download the Zorario app to find verified property listings across India.">
+    <meta property="og:image" content="https://www.zorario.com/assets/images/og-image.jpg">
+    <meta property="og:url" content="https://www.zorario.com/">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://play.google.com/store/apps/details?id=com.akash.prop8">
+
+    <!-- ✅ Hide page content instantly -->
+    <style>
+        html, body { margin: 0; padding: 0; background: #fff; }
+        body { visibility: hidden; }
+    </style>
+
+    <!-- ✅ JS redirect fires before page even paints -->
+    <script>
+        (function () {
+            var playStore = "https://play.google.com/store/apps/details?id=com.akash.prop8";
+            var params = new URLSearchParams(window.location.search);
+            var propertyId = params.get("id");
+
+            if (propertyId) {
+                // Try deep-link into app first, fall back to Play Store
+                window.location.replace("zorario://property?id=" + propertyId);
+                setTimeout(function () {
+                    if (!document.hidden) window.location.replace(playStore);
+                }, 2000);
+            } else {
+                window.location.replace(playStore);
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- intentionally blank — user is redirected before this renders -->
+</body>
+</html>
